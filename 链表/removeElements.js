@@ -1,4 +1,6 @@
 /**
+ * 203.移除链表元素
+ * 删除链表中等于给定值 val 的所有节点。
  * Definition for singly-linked list.
  * function ListNode(val, next) {
  *     this.val = (val===undefined ? 0 : val)
