@@ -35,4 +35,40 @@ var strStr1 = function(haystack, needle) {
     // 没有找到返回-1
     return -1;
 };
-console.log(strStr1("sadbutsad1","sad1"));
+// KMP算法
+var strStr2 = function (haystack, needle) {
+    if (needle.length === 0)
+        return 0;
+
+    // 求next数组 // 存放needle的最大长度的前后缀
+    const getNext = (needle) => {
+        let next = [];
+        let j = 0;
+        next.push(j);
+        for (let i = 1; i < needle.length; ++i) {
+            while (j > 0 && needle[i] !== needle[j])
+                j = next[j - 1];
+            if (needle[i] === needle[j])
+                j++;
+            next.push(j);
+        }
+
+        return next;
+    }
+
+    let next = getNext(needle);
+    console.log(next);
+    let j = 0;
+    for (let i = 0; i < haystack.length; ++i) { 
+        while (j > 0 && haystack[i] !== needle[j]){
+            j = next[j - 1];
+        }
+        if (haystack[i] === needle[j])
+            j++;
+        if (j === needle.length)
+            return (i - needle.length + 1);
+    }
+
+    return -1;
+};
+console.log(strStr2("aabaabaafa","aabaaf"));
