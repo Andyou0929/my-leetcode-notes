@@ -10,7 +10,7 @@
  */
 var isValid = function(s) {
     if (s.length <= 1) return false;
-    // 括号表
+    // 括号表 
     let obj = {
         "(":")",
         "{":"}",
