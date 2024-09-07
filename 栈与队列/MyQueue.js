@@ -50,7 +50,7 @@ MyQueue.prototype.peek = function() {
 /**
  * boolean empty() 如果队列为空，返回 true ；否则，返回 false
  * @return {boolean}
- */
+ */ 
 MyQueue.prototype.empty = function() {
     // 栈1与栈2的长度都为空则，队列为空，否则不为空
     return !this.stack1.length && !this.stack2.length;
