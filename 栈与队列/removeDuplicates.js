@@ -11,7 +11,7 @@ var removeDuplicates = function(s) {
     let stack = [];
     for (const char of s) {
         // 每次循环拿出栈顶判断当前字符是否与栈顶相等
-        const top = stack.pop();
+        const top = stack.pop(); 
         // 如果不相等将栈顶和当前字符push进栈
         if (char !== top) {
             stack.push(top,char)
