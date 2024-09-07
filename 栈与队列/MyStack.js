@@ -11,7 +11,7 @@ var MyStack = function() {
 /** 
  * void push(int x) 将元素 x 压入栈顶。
  * @param {number} x
- * @return {void}
+ * @return {void} 
  */
 MyStack.prototype.push = function(x) {
     this.queueIn.push(x);
