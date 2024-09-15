@@ -17,6 +17,7 @@ function TreeNode(val, left, right) {
  * @param {TreeNode} root
  * @return {number[]}
  */
+// 递归
 var inorderTraversal = function(root) {
     return root ? [
         ...inorderTraversal(root.left),
@@ -24,3 +25,21 @@ var inorderTraversal = function(root) {
         ...inorderTraversal(root.right)
     ] : [];
 };
+// 栈
+var inorderTraversal1 = function(root){
+    if (!root) return [];
+    const stack = [];
+    let cur = root;
+    const ans = [];
+    while (cur !== null || stack.length) {
+        if (cur !== null) {
+            stack.push(cur);
+            cur = cur.left;
+        }else{
+            const node = stack.pop();
+            ans.push(node.val);
+            cur = node.right;
+        }
+    }
+    return ans;
+}
