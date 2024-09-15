@@ -17,6 +17,7 @@ function TreeNode(val, left, right) {
  * @param {TreeNode} root
  * @return {number[]}
  */
+// 递归法
 var postorderTraversal = function(root) {
     return root ? [
         ...postorderTraversal(root.left),
@@ -24,3 +25,16 @@ var postorderTraversal = function(root) {
         root.val
     ] : [];
 };
+// 栈
+var postorderTraversal1 = function(root){
+    if (!root) return [];
+    const stack = [root];
+    const ans = [];
+    while (stack.length) {
+        const node = stack.pop();
+        ans.push(node.val);
+        node.left && stack.push(node.left);
+        node.right && stack.push(node.right);
+    }
+    return ans.reverse();
+}
