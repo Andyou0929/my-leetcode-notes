@@ -17,6 +17,7 @@ function TreeNode(val, left, right) {
  * @param {TreeNode} root
  * @return {number[]}
  */
+// 递归
 var preorderTraversal = function(root) {
     return root ? [
         root.val,
@@ -24,3 +25,17 @@ var preorderTraversal = function(root) {
         ...preorderTraversal(root.right)
     ] : [];
 };
+// 栈
+var preorderTraversal1 = function(root){
+    if (!root) return [];
+    const stack = [];
+    const ans = [];
+    stack.push(root);
+    while (stack.length) {
+        const node = stack.pop();
+        ans.push(node.val);
+        node.right && stack.push(node.right);
+        node.left && stack.push(node.left);
+    }
+    return ans;
+}
