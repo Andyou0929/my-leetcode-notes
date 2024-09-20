@@ -12,7 +12,7 @@
  * @param {TreeNode} root
  * @return {number}
  */
-// 标记
+// 标记 + 递归
 var sumOfLeftLeaves = function (root) {
     if (!root) return 0;
     let ans = 0;
@@ -25,5 +25,21 @@ var sumOfLeftLeaves = function (root) {
         node.right && getLeft(node.right);
     }
     getLeft(root);
+    return ans;
+};
+
+// 迭代法 
+var sumOfLeftLeaves1 = function (root) {
+    if (!root) return 0;
+    let ans = 0;
+    const stack = [{isLeft:false,node:root}];
+    while (stack.length) {
+        const o = stack.pop();
+        if (o?.isLeft && !o.node.left && !o.node.right) {
+            ans+= o.node.val;
+        }
+        o?.node.left && stack.push({isLeft:true,node:o.node.left})
+        o?.node.right && stack.push({isLeft:false,node:o.node.right})
+    }
     return ans;
 };
