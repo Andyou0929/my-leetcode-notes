@@ -15,27 +15,53 @@
  * @param {number} val
  * @return {TreeNode}
  */
-var insertIntoBST = function(root, val) {
-    function checkNode(node,val) {
-        if(!node){
+// 递归法
+var insertIntoBST = function (root, val) {
+    function checkNode(node, val) {
+        if (!node) {
             node = new TreeNode(val);
             return;
         }
-        if(node.val > val && node.left){
-            checkNode(node.left,val);
+        if (node.val > val && node.left) {
+            checkNode(node.left, val);
         }
-        if(node.val < val && node.right){
-            checkNode(node.right,val);
+        if (node.val < val && node.right) {
+            checkNode(node.right, val);
         }
-        if(node.val > val && !node.left){
+        if (node.val > val && !node.left) {
             node.left = new TreeNode(val);
             return;
         }
-        if(node.val < val && !node.right){
+        if (node.val < val && !node.right) {
             node.right = new TreeNode(val);
             return;
         }
     }
-    checkNode(root,val);
+    checkNode(root, val);
     return root;
 };
+// 迭代法
+var insertIntoBST1 = function (root, val) {
+    if (root === null) {
+        return new TreeNode(val);
+    }
+    let pos = root;
+    while (pos !== null) {
+        if (val < pos.val) {
+            if (pos.left === null) {
+                pos.left = new TreeNode(val);
+                break;
+            } else {
+                pos = pos.left;
+            }
+        } else {
+            if (pos.right === null) {
+                pos.right = new TreeNode(val);
+                break;
+            } else {
+                pos = pos.right;
+            }
+        }
+    }
+    return root;
+}
