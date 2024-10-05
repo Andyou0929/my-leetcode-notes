@@ -16,19 +16,19 @@
  * @return {TreeNode}
  */
 var lowestCommonAncestor = function (root, p, q) {
-    const travelTree = (root, p, q) => {
-        if (root === null || root === p || root === q) {
-            return root;
+    const compear = (node, p, q) => {
+        if (node === null || node === p || node === q) {
+            return node;
         }
-        let left = travelTree(root.left, p, q);
-        let right = travelTree(root.right, p, q);
-        if (left != null && right != null){
-            return root;
+        const left = compear(node.left, p, q);
+        const right = compear(node.right, p, q);
+        if (left && right) {
+            return node;
         }
-        if(left){
+        if (!left) {
             return right;
         }
-        return right;
+        return left;
     }
-    return travelTree(root,p,q);
+    return compear(root, p, q);
 };
