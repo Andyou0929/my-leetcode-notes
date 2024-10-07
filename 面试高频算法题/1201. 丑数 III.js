@@ -11,7 +11,7 @@
 // 解题思路，二分法
 /* 
     1~M中共有多少个丑数 
-    公式： (M / a) + (M /b) + (M / c) - (M / a_b最大公约数) - (M / a_c最大公约数) - (M / b_c最大公约数) + (M / a_c_d的大公约数)
+    公式： (M / a) + (M /b) + (M / c) - (M / a_b最小公倍数) - (M / a_c最小公倍数) - (M / b_c最小公倍数) + (M / a_c_d的小公倍数)
     肯能会出现越界问题：需要使用bigInt
 */
 var nthUglyNumber = function (n, a, b, c) {
@@ -30,7 +30,7 @@ var nthUglyNumber = function (n, a, b, c) {
         }
         return m;
     }
-    // 求最小公倍数
+    // 求最大公约数
     function gcd(x, y) {
         if (y === 0n) {
             return x;
@@ -39,7 +39,7 @@ var nthUglyNumber = function (n, a, b, c) {
         }
 
     }
-    // 求最大公约数
+    // 求最小公倍数
     function lcm(x, y) {
         return x * y / gcd(x, y);
     }
