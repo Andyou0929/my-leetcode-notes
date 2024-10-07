@@ -9,18 +9,23 @@
 var threeSum = function (nums) {
     const ans = [];
     nums.sort((a, b) => a - b);
-    for (let i = 0; i < nums.length; i++) {
-        let j = i + 1;
-        let k = nums.length - 1;
+    const len = nums.length;
+    for (let i = 0; i < len; i++) {
+        if (nums[i] === nums[i - 1]) continue;
+        let j = i + 1,
+            k = len - 1;
         while (j < k) {
-            const sum = nums[i] + nums[j] + nums[k];
+            const arr = [nums[i], nums[j], nums[k]];
+            const sum = arr.reduce((pre, cur) => pre + cur);
             if (sum === 0) {
-                const JArr = JSON.stringify([nums[i], nums[j], nums[k]].sort());
-                if (!ans.includes(JArr)) {
-                    ans.push(JArr);
+                ans.push(arr);
+                while (j < k && nums[j] === nums[j + 1]) {
+                    j++;
                 }
-                j++;
-                k--;
+                while (j < k && nums[k] === nums[k - 1]) {
+                    k--;
+                }
+                j++, k--;
             }
             if (sum > 0) {
                 k--;
@@ -30,7 +35,7 @@ var threeSum = function (nums) {
             }
         }
     }
-    return ans.map(JSON.parse);
+    return ans;
 };
 
 console.log(threeSum([-1, 0, 1, 2, -1, -4]));
